@@ -2,13 +2,27 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const jwt = require('jsonwebtoken'); // For token generation
-const bcrypt = require('bcrypt'); // For password hashing
+const jwt = require('jsonwebtoken'); 
+const bcrypt = require('bcrypt'); 
 const PORT = 8080;
 
 const app = express();
-app.use(cors());
 app.use(bodyParser.json());
+
+const allowedOrigins= ["http://localhost:5173","https://worko-assignment.vercel.app/","https://murtaza-worko.vercel.app/"]
+app.use(cors({
+    origin:(origin,callback)=>{
+        console.log("Origin is", origin);
+        if(allowedOrigins.indexOf(origin)!==-1||!origin){
+            console.log("Origin allowed");
+            callback(null,true)
+        }
+        else{
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
+    credentials:true
+}));
 
 // MongoDB Connection
 mongoose.connect('mongodb+srv://mohdmurtaza0101:mongoDB@cluster0.j7yirfd.mongodb.net/worko?retryWrites=true&w=majority');
