@@ -29,7 +29,7 @@ const Home = () => {
           return;
         }
 
-        const response = await axios.get("http://localhost:8080/api/referrals", {
+        const response = await axios.get("https://worko-assignment.vercel.app/api/referrals", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -64,7 +64,7 @@ const Home = () => {
         return;
       }
 
-      await axios.put(`http://localhost:8080/api/referrals/${id}`, { status }, {
+      await axios.put(`https://worko-assignment.vercel.app/api/referrals/${id}`, { status }, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

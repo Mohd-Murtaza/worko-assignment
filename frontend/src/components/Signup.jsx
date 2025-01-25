@@ -27,11 +27,12 @@ const Signup = () => {
     const lowerCaseEmail = email.toLowerCase();
 
     try {
-      const response = await axios.post('http://localhost:8080/api/signup', {
+      const response = await axios.post('https://worko-assignment.vercel.app/api/signup', {
         name,
         email: lowerCaseEmail,
         password,
-      });
+      },
+      {withCredentials: true});
 
       if (response.data.success) {
         alert('Signup successful! You can now log in.');
@@ -59,6 +60,7 @@ const Signup = () => {
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
+            placeholder='Enter name'
           />
         </div>
         <div className="mb-4">
@@ -69,6 +71,7 @@ const Signup = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            placeholder='Enter email'
           />
         </div>
         <div className="mb-4 relative">
@@ -79,6 +82,7 @@ const Signup = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            placeholder='Enter password'
           />
           <small className="text-red-600 mt-1 block">
             Password must be at least 8 characters long, contain an uppercase letter, a number, and a special character.

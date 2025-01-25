@@ -47,13 +47,14 @@ const ReferralForm = ({ closeForm }) => {
       }
 
       const response = await axios.post(
-        'http://localhost:8080/api/referrals',
+        'https://worko-assignment.vercel.app/api/referrals',
         { name, email, experience, resume, status },
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
+        {withCredentials: true}
       );
 
       if (response.data) {

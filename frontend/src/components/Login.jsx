@@ -12,15 +12,16 @@ const Login = () => {
     e.preventDefault();
     const lowerCaseEmail = email.toLowerCase();
     try {
-      const response = await axios.post("http://localhost:8080/api/login", {
+      const response = await axios.post("https://worko-assignment.vercel.app/api/login", {
         email:lowerCaseEmail,
-        password,
-      });
+        password},
+        { withCredentials: true }
+      );
   
       console.log("😇 login response here ", response);
       if (response.data.success) {
         localStorage.setItem("token", response.data.token);
-        navigate("/home");
+        navigate("/");
       }
     } catch (error) {
       console.error("Error while logging in:", error);
@@ -39,7 +40,7 @@ const Login = () => {
   return (
     <>
     <Navbar/>
-    <div className="flex justify-center items-center h-screen bg-gray-100">
+    <div className="flex justify-center items-center h-screen bg-gray-200">
       <form
         className="bg-white p-6 rounded shadow-md w-96"
         onSubmit={handleLogin}
@@ -53,6 +54,7 @@ const Login = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            placeholder="Enter email"
           />
         </div>
         <div className="mb-4">
@@ -63,6 +65,7 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            placeholder="Enter password"
           />
         </div>
         <button

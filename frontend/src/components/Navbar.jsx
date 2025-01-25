@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import logo from "../assets/worko.png";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ const Navbar = () => {
     <div className="flex justify-between items-center p-4 bg-slate-900 text-white">
       <img
         className="w-32 md:w-44 lg:w-56"
-        src="https://worko.ai/assets/public/workologoai-2@2x.png"
+        src={logo}
         alt="brand logo"
       />
       {isLogin() ? <button
