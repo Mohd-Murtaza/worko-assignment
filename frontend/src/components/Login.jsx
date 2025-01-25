@@ -17,7 +17,7 @@ const Login = () => {
         password,
       });
   
-      console.log("😇 login response here", response);
+      console.log("😇 login response here ", response);
       if (response.data.success) {
         localStorage.setItem("token", response.data.token);
         navigate("/home");
